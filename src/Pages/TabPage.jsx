@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../sass/desktop.scss';
 import profile from '../Image/profile.jpg';
 import aboutme from '../Image/aboutme.png';
 import android from '../Image/skills/Android.png';
@@ -20,14 +19,12 @@ import reactjs from '../Image/skills/ReactJS.png';
 import sammi from '../Image/education/Sammilani.jpg';
 import sita from '../Image/education/Sitakundu.jpg';
 import south from '../Image/education/SouthGariaJadunath.jpg';
+import '../sass/tab.scss';
 import Typed from 'typed.js';
-// import Design from '../Design/Design';
 import Documents from '../document/CV2.pdf';
 import emailjs from '@emailjs/browser';
 import { BarLoader } from 'react-spinners';
 import { css } from '@emotion/react';
-import contact from '../animation/contact.json';
-import Lottie from 'lottie-react';
 
 const override = css`
   display:block;
@@ -36,8 +33,10 @@ const override = css`
   border-color: red;
 `;
 
-const DesktopPage = () => {
+const TabPage = () => {
     const form = useRef();
+    const [isActive, setIsActive] = useState(false);
+    const [isHover, setIsHover] =useState(false);
     const [isHome, setIsHome] = useState(false);
     const [isHomeSection, setIsHomeSection] = useState(true);
     const [isAboutSection, setIsAboutSection] = useState(false);
@@ -45,29 +44,35 @@ const DesktopPage = () => {
     const [isSkillSection, setIsSkillSection] = useState(false);
     const [isEducationSection, setIsEducationSection] = useState(false);
     const [isContactSection, setIsContactSection] = useState(false);
-    const [isHover, setIsHover] =useState(false);
     const [loading, setLoading] = useState(false);
-    const [scrolling, setScrolling] = useState(false);
 
-    useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setScrolling(true);
-      } else {
-        setScrolling(false);
-      }
+    const handleHamburgerClick = () => {
+        setIsActive(!isActive);
     };
+    const scrollToSection = (sectionId) => {
+        const sectionElement = document.getElementById(sectionId);
+        setIsActive(!isActive);
+    
+        if (sectionElement) {
+          sectionElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      };
+      const scrollToSectionButton = (sectionId) => {
+        const sectionElement = document.getElementById(sectionId);
+        // setIsActive(!isActive);
+    
+        if (sectionElement) {
+          sectionElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      };
 
-    window.addEventListener('scroll', handleScroll);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-
-    const handleEnter= () =>{
+      const handleEnter= () =>{
         setIsHover(true)
     }
     const handleLeave= () =>{
@@ -85,39 +90,6 @@ const DesktopPage = () => {
         document.body.removeChild(link);
     }
 
-    useEffect(() => {
-        const element = document.querySelector('.autoTyped');
-        const options = {
-            strings: ["Web Development", "Android Development", "Python Development"],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true,
-        };
-        const typed = new Typed(element, options);
-        return () => {
-            typed.destroy();
-          };
-    }, []);
-    const gotoTop = () =>{
-        window.scrollTo({top: 0, left: 0, behavior: "smooth"})
-    }
-    const listenToScroll = () =>{
-        let heightToHidden = 200;
-        const windowScroll = 
-            document.body.scrollTop || document.documentElement.scrollTop;
-        if(windowScroll > heightToHidden){
-            setIsHome(true);
-        }else{
-            // setIsAbout(true);
-            setIsHome(false);
-        }
-        
-        /* console.log(windowScroll); */
-    }
-    useEffect(() => {
-        window.addEventListener("scroll", listenToScroll);
-        return () => window.removeEventListener("scroll", listenToScroll);
-    }, [])
     const listenToScrollLink = () => {
         const windowScroll =
           document.body.scrollTop || document.documentElement.scrollTop;
@@ -129,28 +101,28 @@ const DesktopPage = () => {
           setIsSkillSection(false);
           setIsEducationSection(false);
           setIsContactSection(false);
-        } else if (windowScroll >= 200 && windowScroll < 1000) {
+        } else if (windowScroll >= 200 && windowScroll < 1200) {
           setIsHomeSection(false);
           setIsAboutSection(true);
           setIsProjectSection(false);
           setIsSkillSection(false);
           setIsEducationSection(false);
           setIsContactSection(false);
-        } else if (windowScroll >=1000 && windowScroll < 1800){
+        } else if (windowScroll >=1200 && windowScroll < 2600){
             setIsHomeSection(false);
             setIsAboutSection(false);
             setIsSkillSection(true);
             setIsProjectSection(false);
             setIsEducationSection(false);
             setIsContactSection(false);
-        } else if (windowScroll >=1800 && windowScroll < 2500){
+        } else if (windowScroll >=2600 && windowScroll < 4200){
             setIsHomeSection(false);
             setIsAboutSection(false);
             setIsSkillSection(false);
             setIsProjectSection(false);
             setIsEducationSection(true);
             setIsContactSection(false);
-        } else if (windowScroll >=2500 && windowScroll < 3500){
+        } else if (windowScroll >=4200 && windowScroll < 5000){
             setIsHomeSection(false);
             setIsAboutSection(false);
             setIsSkillSection(false);
@@ -170,17 +142,21 @@ const DesktopPage = () => {
         window.addEventListener("scroll", listenToScrollLink);
         return () => window.removeEventListener("scroll", listenToScrollLink);
     }, []);
-    const scrollToSection = (sectionId) => {
-        const sectionElement = document.getElementById(sectionId);
     
-        if (sectionElement) {
-          sectionElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-        }
-    };
-      
+      useEffect(() => {
+        const element = document.querySelector('.autoTypedTab');
+        const options = {
+            strings: ["Web Development", "Android Development", "Python Development"],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true,
+        };
+        const typed = new Typed(element, options);
+        return () => {
+            typed.destroy();
+          };
+    }, []);
+
     const handleGithub = (serchId) =>{
         /* console.log(serchId); */
         if(serchId === 1){
@@ -217,8 +193,28 @@ const DesktopPage = () => {
         } else{
             window.open('https://github.com/ARNAB-BOTMAS', '_blank')
         }
-      } 
-      
+      }
+      const listenToScroll = () =>{
+        let heightToHidden = 200;
+        const windowScroll = 
+            document.body.scrollTop || document.documentElement.scrollTop;
+        if(windowScroll > heightToHidden){
+            setIsHome(true);
+        }else{
+            // setIsAbout(true);
+            setIsHome(false);
+        }
+        
+        /* console.log(windowScroll); */
+    }
+    useEffect(() => {
+        window.addEventListener("scroll", listenToScroll);
+        return () => window.removeEventListener("scroll", listenToScroll);
+    }, [])
+      const gotoTop = () =>{
+        window.scrollTo({top: 0, left: 0, behavior: "smooth"})
+    }
+
     const sendEmail = (e) => {
         e.preventDefault();
 
@@ -272,6 +268,7 @@ const DesktopPage = () => {
             setLoading(false);
         }
     };
+
     const gotosocial = (socialId) =>{
         if(socialId === 'facebook'){
             window.open('https://www.facebook.com/shagor.roy.370?mibextid=JRoKGi', '_blank');
@@ -288,22 +285,29 @@ const DesktopPage = () => {
         }
     }
     return (
-        <div className='desktop'>
-            <nav className={scrolling ? 'navbar' : ''}>
-                <div className="logo">
-                    {/* <img src={Logo} alt="" /> */}
-                    <h1>Arnab Mondal</h1>
+        <div className='tab'>
+            <nav className="navbar">
+                <div className="innerNavbar">
+                    <div className="logo">
+                        {/* <img src={Logo} alt="" /> */}
+                        <h1>Arnab Mondal</h1>
+                    </div>
+                    <div className={`hamburgs ${isActive ? 'active' : ''}`} onClick={handleHamburgerClick}>
+                        <span className='bar'></span>
+                        <span className='bar'></span>
+                        <span className='bar'></span>
+                    </div>
                 </div>
-                <div className="link">
-                    <li className={`${isHomeSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('home')}>Home</li>
-                    <li className={`${isAboutSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('aboutme')}>About Me</li>
-                    <li className={`${isSkillSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('skill')}>Skills</li>
-                    <li className={`${isEducationSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('education')}>Education</li>
-                    <li className={`${isProjectSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('project')}>Project</li>
-                    <li className={`${isContactSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('contact')}>Contact</li>
+                <div className={`link ${isActive ? 'active' : ''}`}>
+                    <li className={`${isHomeSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('hometab')}>Home</li>
+                    <li className={`${isAboutSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('aboutmetab')}>About Me</li>
+                    <li className={`${isSkillSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('skilltab')}>Skills</li>
+                    <li className={`${isEducationSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('educationtab')}>Education</li>
+                    <li className={`${isProjectSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('projecttab')}>Project</li>
+                    <li className={`${isContactSection ? 'activeSection' : ''}`} onClick={() => scrollToSection('contacttab')}>Contact</li>
                 </div>
             </nav>
-            <header className="header" id='home'>
+            <header className="header" id='hometab'>
                 <div className="innerHeader">
                     <div className="innerImg">
                         <img src={profile} alt="" />
@@ -311,8 +315,8 @@ const DesktopPage = () => {
                     <div className="innerText">
                         <span className='innerHeaderFirst'>Hi there,</span>
                         <span className="innerHeaderSecond">I'm Arnab Mondal</span>
-                        <span className="innerHeaderThrid">I'm into <span className='autoTyped innerinnerHeaderThrid'></span></span>
-                        <button onClick={() => scrollToSection('aboutme')}><span><i class="fa-solid fa-chevron-right"></i></span> About Me</button>
+                        <span className="innerHeaderThrid">I'm into <span className='autoTypedTab innerinnerHeaderThrid'></span></span>
+                        <button onClick={() => scrollToSectionButton('aboutmetab')}><span><i class="fa-solid fa-chevron-right"></i></span> About Me</button>
                         <div className="profileLink">
                             <span onClick={() => gotosocial('facebook')}><i class="fa-brands fa-facebook"></i></span>
                             <span onClick={() => gotosocial('instagram')}><i class="fa-brands fa-square-instagram"></i></span>
@@ -323,10 +327,9 @@ const DesktopPage = () => {
                         </div>
                     </div>
                 </div>
-
             </header>
             <main>
-                <div className="aboutme" id='aboutme'>
+                <div className="aboutme" id='aboutmetab'>
                     <h1><i class="fa-solid fa-user"></i> About Me</h1>
                     <div className="inneraboutme">
                         <div className="innerinneraboutme">
@@ -344,7 +347,7 @@ const DesktopPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="skill" id='skill'>
+                <div className="skill" id='skilltab'>
                     <h1><i class="fa-solid fa-gear fa-spin"></i> Skills</h1>
                     <div className="innerskill">
                         <section className="skillcart">
@@ -409,7 +412,7 @@ const DesktopPage = () => {
                         </section>
                     </div>
                 </div>
-                <div className="education" id='education'>
+                <div className="education" id='educationtab'>
                     <h1><i class="fa-solid fa-graduation-cap"></i> My Education</h1>
                     <div className="inneredu">
                         <section className='schoolEduaction'>
@@ -438,7 +441,7 @@ const DesktopPage = () => {
                         </section>
                     </div>
                 </div>
-                <div className="project" id="project">
+                <div className="project" id="projecttab">
                     <h1><i class="fa-solid fa-laptop-code"></i> Project</h1>
                     <div className="innerproject">
                         <section className="projectcard">
@@ -447,7 +450,7 @@ const DesktopPage = () => {
                                     <span>Srishti AI Project</span>
                                 </div>
                                 <div className="projectContent">
-                                    <p>At Srishti AI, our mission is clear - to pioneer the next era of intelligent technologies. Our team of visionary engineers and data scientists are dedicated to pushing the boundaries of what's possible, creating advanced algorithms and solutions that propel us into the future.</p>
+                                    <p>At Srishti AI, our mission is clear - to pioneer the next era of intelligent technologies.</p>
                                     <div className="buttonContent">
                                         <button onClick={() => handleViewmore(1)}><i class="fa-solid fa-eye"></i> View Code</button>
                                         <button onClick={() => handleGithub(1)}><i class="fa-solid fa-code"></i> GitHub</button>
@@ -475,7 +478,7 @@ const DesktopPage = () => {
                                     <span>React JS Chat Website</span>
                                 </div>
                                 <div className="projectContent">
-                                    <p>Embarking on the creation of a chat website using ReactJS represents a fantastic project, providing you with a valuable opportunity to elevate your web development skills. This endeavor not only allows you to delve into the intricacies of ReactJS but also empowers you to construct a practical and highly interactive application.</p>
+                                    <p>Embarking on the creation of a chat website using ReactJS represents a fantastic project, providing you with a valuable opportunity to elevate your web development skills...</p>
                                     <div className="buttonContent">
                                         <button onClick={() => handleViewmore(3)}><i class="fa-solid fa-laptop-file"></i> Visit Site</button>
                                         <button onClick={() => handleGithub(3)}><i class="fa-solid fa-eye"></i> View Code</button>
@@ -489,7 +492,7 @@ const DesktopPage = () => {
                                     <span>Over Time Application Part - I</span>
                                 </div>
                                 <div className="projectContent">
-                                    <p>This application is designed to facilitate the recording of entry and exit times. Its primary function is to allow users to conveniently input and track their entry and exit times, providing a streamlined and efficient way to monitor these crucial data points.</p>
+                                    <p>This application is designed to facilitate the recording of entry and exit times....</p>
                                     <div className="buttonContent">
                                         <button onClick={() => handleViewmore(4)}><i class="fa-solid fa-eye"></i> View Code</button>
                                         <button onClick={() => handleGithub(4)}><i class="fa-solid fa-code"></i> GitHub</button>
@@ -503,7 +506,7 @@ const DesktopPage = () => {
                                     <span>Over Time Application Part - II</span>
                                 </div>
                                 <div className="projectContent">
-                                    <p>This application is designed to facilitate the recording of entry and exit times. Its primary function is to allow users to conveniently input and track their entry and exit times, providing a streamlined and efficient way to monitor these crucial data points.</p>
+                                    <p>This application is designed to facilitate the recording of entry and exit times....</p>
                                     <div className="buttonContent">
                                         <button onClick={() => handleViewmore(5)}><i class="fa-solid fa-eye"></i> View Code</button>
                                         <button onClick={() => handleGithub(5)}><i class="fa-solid fa-code"></i> GitHub</button>
@@ -517,7 +520,7 @@ const DesktopPage = () => {
                                     <span>Photo Album Application</span>
                                 </div>
                                 <div className="projectContent">
-                                    <p>Create a Photo Album application that allows users to upload photos along with timestamps. This application serves as a platform for users to seamlessly share and organize their photos while capturing the temporal context through timestamp integration.</p>
+                                    <p>Create a Photo Album application that allows users to upload photos along with timestamps....</p>
                                     <div className="buttonContent">
                                         <button onClick={() => handleViewmore(6)}><i class="fa-solid fa-eye"></i> View Code</button>
                                         <button onClick={() => handleGithub(6)}><i class="fa-solid fa-code"></i> GitHub</button>
@@ -528,7 +531,7 @@ const DesktopPage = () => {
                     </div>
                     <button className='viewmore' onClick={() => handleViewmore(0)}>View More <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
-                <div className="contact" id='contact'>
+                <div className="contact" id='contacttab'>
                     <h1><i class="fa-solid fa-headphones-simple"></i> Contact Me</h1>
                     <div className="innercontact">
                         <div className="formContent">
@@ -550,9 +553,6 @@ const DesktopPage = () => {
                                 </button>
                             </form>
                         </div>
-                        <div className="animationContent">
-                            <Lottie loop={true} animationData={contact}/>
-                        </div>
                     </div>
 
                 </div>
@@ -566,12 +566,12 @@ const DesktopPage = () => {
                     </div>
                     <div className="portfolio">
                         <h2>Quick Links</h2>
-                            <li onClick={() => scrollToSection('home')}><i class="fa-solid fa-up-right-from-square"></i> Home</li>
-                            <li onClick={() => scrollToSection('skill')}><i class="fa-solid fa-up-right-from-square"></i> Skills</li>
-                            <li onClick={() => scrollToSection('aboutme')}><i class="fa-solid fa-up-right-from-square"></i> About Me</li>
-                            <li onClick={() => scrollToSection('education')}><i class="fa-solid fa-up-right-from-square"></i> Education</li>
-                            <li onClick={() => scrollToSection('project')}><i class="fa-solid fa-up-right-from-square"></i> Project</li>
-                            <li onClick={() => scrollToSection('contact')}><i class="fa-solid fa-up-right-from-square"></i> Contact</li>
+                            <li onClick={() => scrollToSectionButton('homephone')}><i class="fa-solid fa-up-right-from-square"></i> Home</li>
+                            <li onClick={() => scrollToSectionButton('skillphone')}><i class="fa-solid fa-up-right-from-square"></i> Skills</li>
+                            <li onClick={() => scrollToSectionButton('aboutmephone')}><i class="fa-solid fa-up-right-from-square"></i> About Me</li>
+                            <li onClick={() => scrollToSectionButton('educationphone')}><i class="fa-solid fa-up-right-from-square"></i> Education</li>
+                            <li onClick={() => scrollToSectionButton('projectphone')}><i class="fa-solid fa-up-right-from-square"></i> Project</li>
+                            <li onClick={() => scrollToSectionButton('contactphone')}><i class="fa-solid fa-up-right-from-square"></i> Contact</li>
                     </div>
                     <div className="portfolio">
                         <h2>Contact Info</h2>
@@ -595,9 +595,8 @@ const DesktopPage = () => {
             <div className={`top ${isHome ? 'show' : ''}`} onClick={gotoTop}>
                 <i className="fa-solid fa-chevron-down"></i>
             </div>
-
         </div>
     );
 }
 
-export default DesktopPage;
+export default TabPage;

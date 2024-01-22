@@ -158,7 +158,7 @@ const PhonePage = () => {
     }, []);
 
     const handleGithub = (serchId) =>{
-        console.log(serchId);
+        /* console.log(serchId); */
         if(serchId === 1){
             window.open('https://github.com/ARNAB-BOTMAS/Srishti_project', '_blank');
         } else if(serchId === 2){
@@ -205,7 +205,7 @@ const PhonePage = () => {
             setIsHome(false);
         }
         
-        console.log(windowScroll);
+        /* console.log(windowScroll); */
     }
     useEffect(() => {
         window.addEventListener("scroll", listenToScroll);
@@ -268,6 +268,21 @@ const PhonePage = () => {
             setLoading(false);
         }
     };
+    const gotosocial = (socialId) =>{
+        if(socialId === 'facebook'){
+            window.open('https://www.facebook.com/shagor.roy.370?mibextid=JRoKGi', '_blank');
+        } else if(socialId === 'instagram'){
+            window.open('https://www.instagram.com/shagor.roy.370/', '_blank');
+        } else if(socialId === 'github'){
+            window.open('https://github.com/ARNAB-BOTMAS', '_blank');
+        } else if(socialId === 'linkedin'){
+            window.open('https://www.linkedin.com/in/arnab-mondal-4409a5299/', '_blank');
+        } else if(socialId === 'telegram'){
+            window.open('https://t.me/Arnabmon', '_blank');
+        } else if(socialId === 'whatsapp'){
+            window.open('https://wa.me/919339421756','_blank')
+        }
+    }
     return (
         <div className='phone'>
             <nav className="navbar">
@@ -302,12 +317,12 @@ const PhonePage = () => {
                         <span className="innerHeaderThrid">I'm into <span className='autoTypedPhone innerinnerHeaderThrid'></span></span>
                         <button onClick={() => scrollToSectionButton('aboutmephone')}><span><i class="fa-solid fa-chevron-right"></i></span> About Me</button>
                         <div className="profileLink">
-                            <span><i class="fa-brands fa-facebook"></i></span>
-                            <span><i class="fa-brands fa-square-instagram"></i></span>
-                            <span><i class="fa-brands fa-github"></i></span>
-                            <span><i class="fa-brands fa-linkedin"></i></span>
-                            <span><i class="fa-brands fa-telegram"></i></span>
-                            <span><i class="fa-brands fa-square-whatsapp"></i></span>
+                            <span onClick={() => gotosocial('facebook')}><i class="fa-brands fa-facebook"></i></span>
+                            <span onClick={() => gotosocial('instagram')}><i class="fa-brands fa-square-instagram"></i></span>
+                            <span onClick={() => gotosocial('github')}><i class="fa-brands fa-github"></i></span>
+                            <span onClick={() => gotosocial('linkedin')}><i class="fa-brands fa-linkedin"></i></span>
+                            <span onClick={() => gotosocial('telegram')}><i class="fa-brands fa-telegram"></i></span>
+                            <span onClick={() => gotosocial('whatsapp')}><i class="fa-brands fa-square-whatsapp"></i></span>
                         </div>
                     </div>
                 </div>
@@ -542,7 +557,7 @@ const PhonePage = () => {
                 </div>
             </main>
             <footer>
-            <div className="innerFooter">
+                <div className="innerFooter">
                     <div className="portfolio">
                         <h2>Arnab's Portfolio</h2>
                         <p>Thank you for visiting my personal portfolio website contact with me over socials</p>
@@ -563,12 +578,12 @@ const PhonePage = () => {
                         <p><span><i class="fa-solid fa-envelope-open-text"></i></span> arnabmondal203@gmail.com</p>
                         <p><span><i class="fa-solid fa-location-dot"></i></span> Champahati, West Bengal - 743330, India</p>
                         <div className="links">
-                            <div><i class="fa-brands fa-facebook"></i></div>
-                            <div><i class="fa-brands fa-instagram"></i></div>
-                            <div><i class="fa-brands fa-github"></i></div>
-                            <div><i class="fa-brands fa-linkedin-in"></i></div>
-                            <div><i class="fa-brands fa-telegram"></i></div>
-                            <div><i class="fa-brands fa-whatsapp"></i></div>
+                            <div onClick={() => gotosocial('facebook')}><i class="fa-brands fa-facebook"></i></div>
+                            <div onClick={() => gotosocial('instagram')}><i class="fa-brands fa-instagram"></i></div>
+                            <div onClick={() => gotosocial('github')}><i class="fa-brands fa-github"></i></div>
+                            <div onClick={() => gotosocial('linkedin')}><i class="fa-brands fa-linkedin-in"></i></div>
+                            <div onClick={() => gotosocial('telegram')}><i class="fa-brands fa-telegram"></i></div>
+                            <div onClick={() => gotosocial('whatsapp')}><i class="fa-brands fa-whatsapp"></i></div>
                         </div>
                     </div>
                 </div>
