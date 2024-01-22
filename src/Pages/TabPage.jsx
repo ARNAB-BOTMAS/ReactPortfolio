@@ -162,7 +162,7 @@ const TabPage = () => {
         if(serchId === 1){
             window.open('https://github.com/ARNAB-BOTMAS/Srishti_project', '_blank');
         } else if(serchId === 2){
-            window.open('https://github.com/ARNAB-BOTMAS/Srishti_project', '_blank');
+            window.open('https://github.com/ARNAB-BOTMAS/ReactPortfolio', '_blank');
         } else if(serchId === 3){
             window.open('https://github.com/ARNAB-BOTMAS/ReactChat', '_blank');
         } else if(serchId === 4){
@@ -179,7 +179,7 @@ const TabPage = () => {
         if(serchId === 1){
             window.open('https://github.com/ARNAB-BOTMAS/Srishti_project/blob/main/SRI.py', '_blank');
         }  else if(serchId === 2){
-            window.open('https://github.com/ARNAB-BOTMAS/', '_blank');
+            window.open('https://arnab-mondal-portfolio.onrender.com/', '_blank');
         } else if(serchId === 3){
             window.open('https://main--enchanting-gumdrop-3b219a.netlify.app/', '_blank');
         } else if(serchId === 4){
