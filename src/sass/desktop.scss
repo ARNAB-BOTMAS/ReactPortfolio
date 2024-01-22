@@ -68,9 +68,11 @@
         }
     }
     nav.navbar{
-        background: transparent;
+        opacity: 0;
+        // background: transparent;
     }
     nav.navbar:hover{
+        opacity: 1;
         background: #fff;
     }
     header{
