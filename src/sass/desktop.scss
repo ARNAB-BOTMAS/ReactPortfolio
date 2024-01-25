@@ -498,6 +498,12 @@
                     background-size: cover;
                     background-position: center;
                 }
+                .projectcard:nth-child(7){
+                    background: url(../Image//back-project/Application.jpg);
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                }
                 .projectcard:hover{
                     .coverpage{
                         position: absolute;

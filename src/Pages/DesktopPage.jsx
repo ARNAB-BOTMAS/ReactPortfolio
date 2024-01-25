@@ -195,6 +195,8 @@ const DesktopPage = () => {
             window.open('https://github.com/ARNAB-BOTMAS/ApplicationOvertime', '_blank');
         } else if(serchId === 6){
             window.open('https://github.com/ARNAB-BOTMAS/PhotoAlbum', '_blank');
+        } else if(serchId === 7){
+            window.open('https://github.com/ARNAB-BOTMAS/HospitalPrescriptionAppliction', '_blank');
         } else{
             window.open('https://github.com/ARNAB-BOTMAS', '_blank')
         }
@@ -212,9 +214,11 @@ const DesktopPage = () => {
             window.open('https://github.com/ARNAB-BOTMAS/ApplicationOvertime/tree/main/app', '_blank');
         } else if(serchId === 6){
             window.open('https://github.com/ARNAB-BOTMAS/PhotoAlbum/tree/main/app', '_blank');
+        } else if(serchId === 7){
+            window.open('https://github.com/ARNAB-BOTMAS/HospitalPrescriptionAppliction/tree/main/app/src/main/res', '_blank');
         } else if(serchId === 0){
             window.open('https://github.com/ARNAB-BOTMAS?tab=repositories', '_blank');
-        } else{
+        }  else{
             window.open('https://github.com/ARNAB-BOTMAS', '_blank')
         }
       }
@@ -521,6 +525,20 @@ const DesktopPage = () => {
                                     <div className="buttonContent">
                                         <button onClick={() => handleViewmore(6)}><i class="fa-solid fa-eye"></i> View Code</button>
                                         <button onClick={() => handleGithub(6)}><i class="fa-solid fa-code"></i> GitHub</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section className="projectcard">
+                            <div className='coverpage'>
+                                <div className="projecttext">
+                                    <span>Hospital Prescription Application</span>
+                                </div>
+                                <div className="projectContent">
+                                    <p>Create a Hospital Prescription application that allows users to Prescription along with timestamps. This application serves as a platform for users to seamlessly share and organize their Prescription while capturing the temporal context through timestamp integration.</p>
+                                    <div className="buttonContent">
+                                        <button onClick={() => handleViewmore(7)}><i class="fa-solid fa-eye"></i> View Code</button>
+                                        <button onClick={() => handleGithub(7)}><i class="fa-solid fa-code"></i> GitHub</button>
                                     </div>
                                 </div>
                             </div>
