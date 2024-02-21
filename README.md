@@ -9,7 +9,6 @@ This repository contains the code for my personal portfolio website. The website
 - [Setup](#setup)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 This portfolio website serves as a platform to present my work and achievements. It includes sections for displaying projects, detailing skills, and providing information about me.
